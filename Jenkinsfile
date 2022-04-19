@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/andynze/java-project.git'
+                git branch: 'master', url: 'https://github.com/andynze/java-project.git'
             }
         }   
         stage('Install') {
