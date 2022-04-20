@@ -16,9 +16,21 @@ pipeline {
                 sh 'cd MyWebApp && mvn test'
             }
         }
+        stage('Code Quality Scan') {
+            steps {
+                withSonarQubeEnv('sonar_token') {
+                sh "mvn -f MyWebApp/pom.xml sonar:sonar"
+                }
+            }
+        }
+//        stage("Quality gate") {
+//            steps {
+//                waitForQualityGate abortPipeline: true
+//            }
+//        }
         stage('Deploy to Tomcat') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://3.235.0.243:8080/')], contextPath: 'path', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://172.31.1.53:8080/')], contextPath: 'path', war: '**/*.war'
             }
         }
     }
