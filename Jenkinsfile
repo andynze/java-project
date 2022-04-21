@@ -23,6 +23,23 @@ pipeline {
                 }
             }
         }
+         stage('Code Quality Scan') {
+            steps {
+                rtServer {
+                    id: "jfrog-art"
+                url: "http://34.239.114.99:8082//artifactory",
+                credentialsId: "jfrog-art"
+                bypassProxy: true
+                }
+            }
+        }
+          stage('Deploy Artifacts') {
+            steps {
+                rtUpload (
+                    serverId: 'jfrog'
+                }
+            } 
+        }
 //        stage("Quality gate") {
 //            steps {
 //                waitForQualityGate abortPipeline: true
