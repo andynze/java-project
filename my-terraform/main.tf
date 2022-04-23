@@ -12,7 +12,7 @@ resource "aws_instance" "Jenkins" {
     instance_type = "t2.small"
     availability_zone = "us-east-1a"
     key_name = "DellDevOpsKey"
-    vpc_security_group_ids =  ["sg-0a107b205e6e0f859"]
+    vpc_security_group_ids =  ["sg-0a107b205e6e0f859"] #Jenkins-Vprofile-SG
     tags = {
      "Name" = "Jenkins-Server"
    }
@@ -22,7 +22,7 @@ resource "aws_instance" "ubuntu18_04_01" {
     instance_type = "t2.small"
     availability_zone = "us-east-1a"
     key_name = "DellDevOpsKey"
-    vpc_security_group_ids =  ["sg-0d5fbb733b7690801"]
+    vpc_security_group_ids =  ["sg-0d5fbb733b7690801"] #Nexus-Vprofile-SG
     tags = {
         Name = "Nexus-Server"
     }  
@@ -31,7 +31,18 @@ resource "aws_instance" "ubuntu18_04_02" {
     ami = "ami-01285be225de9a0de"
     instance_type = "t2.small"
     availability_zone = "us-east-1a"
-    vpc_security_group_ids =  ["sg-0b21765a2d2c24833"]
+    vpc_security_group_ids =  ["sg-0b21765a2d2c24833"] #Sonarqube-Vprofile-SG
+    key_name = "DellDevOpsKey"
+    tags = {
+        Name = "SonarQube"
+    }  
+}
+
+resource "aws_instance" "ubuntu18_04_02" {
+    ami = "ami-01eda8eaca479cd7c"
+    instance_type = "t2.small"
+    availability_zone = "us-east-1a"
+    vpc_security_group_ids =  ["sg-05486d51818b61bd5"] #vprofile-app-TC-staging-SG
     key_name = "DellDevOpsKey"
     tags = {
         Name = "SonarQube"
