@@ -34,7 +34,7 @@ resource "aws_instance" "ubuntu18_04_02" {
     vpc_security_group_ids =  ["sg-0b21765a2d2c24833"] #Sonarqube-Vprofile-SG
     key_name = "DellDevOpsKey"
     tags = {
-        Name = "SonarQube"
+        Name = "SonarQube-Server"
     }  
 }
 
@@ -45,7 +45,7 @@ resource "aws_instance" "ubuntu18_04_03" {
     vpc_security_group_ids =  ["sg-05486d51818b61bd5"] #vprofile-app-TC-staging-SG
     key_name = "DellDevOpsKey"
     tags = {
-        Name = "SonarQube"
+        Name = "Tomcat-Server"
     }  
 }
 
