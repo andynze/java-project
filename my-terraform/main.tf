@@ -37,3 +37,5 @@ resource "aws_instance" "ubuntu18_04_02" {
         Name = "SonarQube"
     }  
 }
+
+####
