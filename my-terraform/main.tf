@@ -3,12 +3,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
-#variable "my_jenkins_ami" {
-#  default = "ami-04b1b3ba8947d7679"
-#}
+variable "jen_ami" {
+  default = "ami-04b1b3ba8947d7679"
+}
 
 resource "aws_instance" "Jenkins" {
-    ami = "ami-04b1b3ba8947d7679"
+    ami = var.jen_ami
     instance_type = "t2.small"
     availability_zone = "us-east-1a"
     key_name = "DellDevOpsKey"
@@ -37,7 +37,6 @@ resource "aws_instance" "ubuntu18_04_02" {
         Name = "SonarQube-Server"
     }  
 }
-
 resource "aws_instance" "ubuntu18_04_03" {
     ami = "ami-01eda8eaca479cd7c"
     instance_type = "t2.small"
