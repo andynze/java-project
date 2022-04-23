@@ -3,6 +3,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
+#variable "my_jenkins_ami" {
+#  default = "ami-04b1b3ba8947d7679"
+#}
+
 resource "aws_instance" "Jenkins" {
     ami = "ami-04b1b3ba8947d7679"
     instance_type = "t2.small"
