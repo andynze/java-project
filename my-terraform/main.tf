@@ -38,7 +38,7 @@ resource "aws_instance" "ubuntu18_04_02" {
     }  
 }
 
-resource "aws_instance" "ubuntu18_04_02" {
+resource "aws_instance" "ubuntu18_04_03" {
     ami = "ami-01eda8eaca479cd7c"
     instance_type = "t2.small"
     availability_zone = "us-east-1a"
