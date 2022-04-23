@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/andynze/java-project.git'
+                git branch: 'vproject', url: 'https://github.com/andynze/java-project.git'
             }
         }   
         stage('Install') {
@@ -23,11 +23,28 @@ pipeline {
                 }
             }
         }
-        stage("Quality gate") {
+         stage('Code Quality Scan') {
             steps {
-                waitForQualityGate abortPipeline: true
+                rtServer {
+                    id: "jfrog-art"
+                url: "http://34.239.114.99:8082//artifactory",
+                credentialsId: "jfrog-art"
+                bypassProxy: true
+                }
             }
         }
+          stage('Deploy Artifacts') {
+            steps {
+                rtUpload (
+                    serverId: 'jfrog'
+                }
+            } 
+        }
+//        stage("Quality gate") {
+//            steps {
+//                waitForQualityGate abortPipeline: true
+//            }
+//        }
         stage('Deploy to Tomcat') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://172.31.1.53:8080/')], contextPath: 'path', war: '**/*.war'
@@ -35,4 +52,3 @@ pipeline {
         }
     }
 }
-
