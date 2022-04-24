@@ -3,12 +3,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "jen_ami" {
+variable "jenami" {
   default = "ami-04b1b3ba8947d7679"
 }
 
 resource "aws_instance" "Jenkins" {
-    ami = var.jen_ami
+    ami = var.jenami
     instance_type = "t2.small"
     availability_zone = "us-east-1a"
     key_name = "DellDevOpsKey"
@@ -49,3 +49,5 @@ resource "aws_instance" "ubuntu18_04_03" {
 }
 
 #Update to git
+
+
