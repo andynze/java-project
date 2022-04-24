@@ -23,6 +23,7 @@ pipeline {
                 }
             }
         }
+<<<<<<< HEAD
          stage('Code Quality Scan') {
             steps {
                 rtServer {
@@ -40,6 +41,8 @@ pipeline {
                 }
             } 
         }
+=======
+>>>>>>> parent of d1ae6e8 (Quality Gate Update)
 //        stage("Quality gate") {
 //            steps {
 //                waitForQualityGate abortPipeline: true
